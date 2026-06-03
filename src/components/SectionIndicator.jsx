@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { navItems } from '../data/content';
+import { useContent } from '../lib/LanguageContext';
 
 // Fixed vertical dot navigation (desktop only). Active dot tracks the
 // section currently in view via IntersectionObserver.
 export default function SectionIndicator() {
-  const [active, setActive] = useState(navItems[0].id);
+  const { navItems, lang } = useContent();
+  const [active, setActive] = useState('home');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,7 +38,7 @@ export default function SectionIndicator() {
             aria-label={item.label}
             aria-current={isActive ? 'true' : undefined}
           >
-            <span className="absolute right-6 whitespace-nowrap font-body text-[11px] uppercase tracking-[0.18em] text-ivory-dim opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <span className={`absolute right-6 whitespace-nowrap text-ivory-dim opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${lang === 'hi' ? 'font-deva text-sm' : 'font-body text-[11px] uppercase tracking-[0.18em]'}`}>
               {item.label}
             </span>
             <span

@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gallery } from '../data/content';
+import { useContent } from '../lib/LanguageContext';
 import { EASE, viewport } from '../lib/motion';
 import Reveal from '../components/Reveal';
 import Lightbox from './Lightbox';
@@ -8,6 +9,7 @@ import { TILE_BG, Frame } from './galleryTile';
 
 export default function Gallery() {
   const [index, setIndex] = useState(null);
+  const { ui, lang } = useContent();
 
   const close = useCallback(() => setIndex(null), []);
   const prev = useCallback(
@@ -23,11 +25,11 @@ export default function Gallery() {
     <section id="gallery" className="relative bg-ink-2 py-28 md:py-36">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="text-center">
-          <p className="font-body text-xs uppercase tracking-[0.4em] text-gold">
-            Moments
+          <p className={`text-gold ${lang === 'hi' ? 'font-deva text-sm' : 'font-body text-xs uppercase tracking-[0.4em]'}`}>
+            {ui.gallery.eyebrow}
           </p>
-          <h2 className="mt-3 font-display text-4xl text-ivory sm:text-5xl">
-            Gallery
+          <h2 className={`mt-3 text-4xl text-ivory sm:text-5xl ${lang === 'hi' ? 'font-deva' : 'font-display'}`}>
+            {ui.gallery.heading}
           </h2>
           <div className="rule-gold mx-auto mt-6 w-24" />
         </Reveal>

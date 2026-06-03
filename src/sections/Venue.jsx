@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { MapPin, BedDouble, Navigation } from 'lucide-react';
-import { venue } from '../data/content';
+import { useContent } from '../lib/LanguageContext';
 import { EASE } from '../lib/motion';
 import Reveal from '../components/Reveal';
 
 export default function Venue() {
+  const { venue, ui, lang } = useContent();
   const directions = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     venue.mapQuery,
   )}`;
@@ -13,11 +14,11 @@ export default function Venue() {
     <section id="travel" className="relative bg-ink py-28 md:py-36">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="text-center">
-          <p className="font-body text-xs uppercase tracking-[0.4em] text-gold">
-            Getting there
+          <p className={`text-gold ${lang === 'hi' ? 'font-deva text-sm' : 'font-body text-xs uppercase tracking-[0.4em]'}`}>
+            {ui.venue.eyebrow}
           </p>
-          <h2 className="mt-3 font-display text-4xl text-ivory sm:text-5xl">
-            Venue &amp; Travel
+          <h2 className={`mt-3 text-4xl text-ivory sm:text-5xl ${lang === 'hi' ? 'font-deva' : 'font-display'}`}>
+            {ui.venue.heading}
           </h2>
           <div className="rule-gold mx-auto mt-6 w-24" />
         </Reveal>
@@ -72,31 +73,33 @@ export default function Venue() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <h3 className="font-display text-3xl text-ivory">{venue.name}</h3>
-            <p className="mt-2 font-body text-ivory-dim">{venue.address}</p>
+            <h3 className={`text-3xl text-ivory ${lang === 'hi' ? 'font-deva' : 'font-display'}`}>{venue.name}</h3>
+            <p className={`mt-2 text-ivory-dim ${lang === 'hi' ? 'font-deva leading-relaxed' : 'font-body'}`}>{venue.address}</p>
             <a
               href={directions}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative mt-6 inline-flex items-center gap-2 overflow-hidden border border-gold px-6 py-3 font-body text-sm uppercase tracking-[0.2em] text-gold transition-colors hover:bg-gold hover:text-ink"
+              className={`group relative mt-6 inline-flex items-center gap-2 overflow-hidden border border-gold px-6 py-3 text-gold transition-colors hover:bg-gold hover:text-ink ${
+                lang === 'hi' ? 'font-deva text-base' : 'font-body text-sm uppercase tracking-[0.2em]'
+              }`}
             >
               <span className="pointer-events-none absolute inset-0 -left-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/30 to-transparent transition-all duration-700 ease-out group-hover:left-[150%]" />
               <Navigation size={16} />
-              Get directions
+              {ui.venue.directions}
             </a>
           </Reveal>
         </div>
 
         {/* Travel tips */}
         <div className="mt-16 grid gap-5 sm:grid-cols-3">
-          {venue.travel.map((t, i) => (
+          {venue.travel.map((tr, i) => (
             <Reveal
-              key={t.title}
+              key={tr.title}
               delay={i * 0.06}
               className="border border-gold/15 bg-surface/40 p-6"
             >
-              <h4 className="font-display text-xl text-gold">{t.title}</h4>
-              <p className="mt-2 font-body text-sm text-ivory-dim">{t.text}</p>
+              <h4 className={`text-xl text-gold ${lang === 'hi' ? 'font-deva' : 'font-display'}`}>{tr.title}</h4>
+              <p className={`mt-2 text-sm text-ivory-dim ${lang === 'hi' ? 'font-deva text-base leading-relaxed' : 'font-body'}`}>{tr.text}</p>
             </Reveal>
           ))}
         </div>
@@ -104,7 +107,7 @@ export default function Venue() {
         {/* Accommodation */}
         <Reveal className="mt-14 flex items-center justify-center gap-3 text-ivory">
           <BedDouble size={20} className="text-gold" />
-          <h3 className="font-display text-2xl">Where to Stay</h3>
+          <h3 className={`text-2xl ${lang === 'hi' ? 'font-deva' : 'font-display'}`}>{ui.venue.whereToStay}</h3>
         </Reveal>
         <div className="mt-6 grid gap-5 md:grid-cols-3">
           {venue.hotels.map((h, i) => (
@@ -116,8 +119,8 @@ export default function Venue() {
               transition={{ duration: 0.6, ease: EASE, delay: i * 0.08 }}
               className="border border-gold/15 bg-surface/40 p-6"
             >
-              <p className="font-display text-lg text-ivory">{h.name}</p>
-              <p className="mt-2 font-body text-sm text-ivory-dim">{h.note}</p>
+              <p className={`text-lg text-ivory ${lang === 'hi' ? 'font-deva' : 'font-display'}`}>{h.name}</p>
+              <p className={`mt-2 text-sm text-ivory-dim ${lang === 'hi' ? 'font-deva text-base leading-relaxed' : 'font-body'}`}>{h.note}</p>
             </motion.div>
           ))}
         </div>

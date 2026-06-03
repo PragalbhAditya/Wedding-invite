@@ -1,12 +1,13 @@
 import { useRef } from 'react';
 import { motion, useScroll, useSpring, useReducedMotion } from 'framer-motion';
-import { story } from '../data/content';
+import { useContent } from '../lib/LanguageContext';
 import { EASE, viewport } from '../lib/motion';
 import Reveal from '../components/Reveal';
 
 export default function Story() {
   const reduce = useReducedMotion();
   const railRef = useRef(null);
+  const { story, ui, lang } = useContent();
   const { scrollYProgress } = useScroll({
     target: railRef,
     offset: ['start 65%', 'end 75%'],
@@ -21,11 +22,11 @@ export default function Story() {
     <section id="story" className="relative bg-ink py-28 md:py-36">
       <div className="mx-auto max-w-3xl px-6">
         <Reveal className="text-center">
-          <p className="font-body text-xs uppercase tracking-[0.4em] text-gold">
-            How it began
+          <p className={`text-gold ${lang === 'hi' ? 'font-deva text-sm' : 'font-body text-xs uppercase tracking-[0.4em]'}`}>
+            {ui.story.eyebrow}
           </p>
-          <h2 className="mt-3 font-display text-4xl text-ivory sm:text-5xl">
-            Our Story
+          <h2 className={`mt-3 text-4xl text-ivory sm:text-5xl ${lang === 'hi' ? 'font-deva' : 'font-display'}`}>
+            {ui.story.heading}
           </h2>
           <div className="rule-gold mx-auto mt-6 w-24" />
         </Reveal>
@@ -76,7 +77,7 @@ export default function Story() {
                   {item.year}
                 </motion.p>
                 <motion.h3
-                  className="mt-1 font-display text-2xl text-ivory sm:text-3xl"
+                  className={`mt-1 text-2xl text-ivory sm:text-3xl ${lang === 'hi' ? 'font-deva' : 'font-display'}`}
                   variants={{
                     hidden: { opacity: 0, x: reduce ? 0 : -40 },
                     show: { opacity: 1, x: 0, transition: { duration: 0.7, ease: EASE, delay: 0.18 } },
@@ -85,7 +86,7 @@ export default function Story() {
                   {item.title}
                 </motion.h3>
                 <motion.p
-                  className="mt-2 max-w-prose font-body text-ivory-dim"
+                  className={`mt-2 max-w-prose text-ivory-dim ${lang === 'hi' ? 'font-deva text-base leading-relaxed' : 'font-body'}`}
                   variants={{
                     hidden: { opacity: 0, x: reduce ? 0 : -40 },
                     show: { opacity: 1, x: 0, transition: { duration: 0.7, ease: EASE, delay: 0.28 } },

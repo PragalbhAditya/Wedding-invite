@@ -1,10 +1,11 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
-import { couple } from '../data/content';
+import { useContent } from '../lib/LanguageContext';
 import GoldText from '../components/GoldText';
 
 export default function Footer() {
   const reduce = useReducedMotion();
+  const { couple, ui, lang } = useContent();
 
   return (
     <footer className="relative overflow-hidden bg-ink-2 py-24 text-center">
@@ -35,7 +36,7 @@ export default function Footer() {
           {couple.bride} &amp; {couple.groom}
         </GoldText>
       </motion.p>
-      <p className="mt-4 font-body text-sm uppercase tracking-[0.3em] text-ivory-dim">
+      <p className={`mt-4 text-sm text-ivory-dim ${lang === 'hi' ? 'font-deva' : 'font-body uppercase tracking-[0.3em]'}`}>
         {couple.date} · {couple.city}
       </p>
       <p className="mt-6 font-display text-xl italic text-ivory">
@@ -44,17 +45,19 @@ export default function Footer() {
 
       <a
         href="#home"
-        className="mt-10 inline-flex flex-col items-center gap-2 font-body text-xs uppercase tracking-[0.25em] text-ivory-dim transition-colors hover:text-gold"
-        aria-label="Back to top"
+        className={`mt-10 inline-flex flex-col items-center gap-2 text-ivory-dim transition-colors hover:text-gold ${
+          lang === 'hi' ? 'font-deva text-sm' : 'font-body text-xs uppercase tracking-[0.25em]'
+        }`}
+        aria-label={ui.footer.backToTop}
       >
         <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40">
           <ArrowUp size={16} />
         </span>
-        Back to top
+        {ui.footer.backToTop}
       </a>
 
-      <p className="mt-12 font-body text-[11px] uppercase tracking-[0.2em] text-ivory-dim/50">
-        With love &amp; blessings
+      <p className={`mt-12 text-ivory-dim/50 ${lang === 'hi' ? 'font-deva text-sm' : 'font-body text-[11px] uppercase tracking-[0.2em]'}`}>
+        {ui.footer.closing}
       </p>
     </footer>
   );

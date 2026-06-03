@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { couple } from '../data/content';
 import { EASE } from '../lib/motion';
+import { useContent } from '../lib/LanguageContext';
 import GoldText from './GoldText';
 import Particles from './Particles';
 
@@ -9,6 +9,8 @@ import Particles from './Particles';
 export default function EnvelopeIntro({ onOpen }) {
   const reduce = useReducedMotion();
   const [opening, setOpening] = useState(false);
+  const { couple, ui, lang, setLang } = useContent();
+  const t = ui.envelope;
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -50,9 +52,40 @@ export default function EnvelopeIntro({ onOpen }) {
           : {}
       }
       role="dialog"
-      aria-label="Open your wedding invitation"
+      aria-label={t.dialogLabel}
     >
       <Particles count={26} />
+
+      {/* Language toggle */}
+      {!opening && (
+        <div className="absolute top-5 right-5 flex items-center gap-1" aria-label="Select language">
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); setLang('en'); }}
+            className={`px-2.5 py-1 rounded-sm border text-xs font-body uppercase tracking-[0.2em] transition-all duration-300 ${
+              lang === 'en'
+                ? 'border-gold/55 text-gold bg-gold/10'
+                : 'border-gold/20 text-ivory-dim hover:border-gold/40 hover:text-ivory'
+            }`}
+            aria-pressed={lang === 'en'}
+          >
+            EN
+          </button>
+          <span className="text-gold/30 text-xs select-none" aria-hidden="true">|</span>
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); setLang('hi'); }}
+            className={`px-2.5 py-1 rounded-sm border font-deva text-sm leading-none transition-all duration-300 ${
+              lang === 'hi'
+                ? 'border-gold/55 text-gold bg-gold/10'
+                : 'border-gold/20 text-ivory-dim hover:border-gold/40 hover:text-ivory'
+            }`}
+            aria-pressed={lang === 'hi'}
+          >
+            हिं
+          </button>
+        </div>
+      )}
 
       {/* Idle float wrapper (sets the envelope size) */}
       <motion.div
@@ -82,7 +115,7 @@ export default function EnvelopeIntro({ onOpen }) {
           type="button"
           onClick={open}
           onKeyDown={onKey}
-          aria-label="Tap to open the invitation"
+          aria-label={t.btnLabel}
           className="absolute inset-0 cursor-pointer outline-none"
           style={{ transformStyle: 'preserve-3d' }}
           animate={a({ scale: 1.35, y: -28, transition: { duration: 0.8, delay: 1.0, ease: EASE } })}
@@ -109,8 +142,12 @@ export default function EnvelopeIntro({ onOpen }) {
             <div className="pointer-events-none absolute inset-[7px] rounded-sm border border-gold/15" />
             <p className="font-deva text-xs text-gold sm:text-sm">{couple.invocation}</p>
             <div className="rule-gold my-2 w-12" />
-            <p className="font-body text-[9px] uppercase tracking-[0.35em] text-ivory-dim">
-              You're invited
+            <p className={`text-[9px] text-ivory-dim transition-all duration-300 ${
+              lang === 'en'
+                ? 'font-body uppercase tracking-[0.35em]'
+                : 'font-deva text-[11px] tracking-wide'
+            }`}>
+              {t.invited}
             </p>
             <p className="mt-1 font-script text-2xl leading-tight sm:text-3xl">
               <GoldText>
@@ -209,8 +246,12 @@ export default function EnvelopeIntro({ onOpen }) {
           transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
         >
           <span className="h-px w-8 bg-gradient-to-r from-transparent to-gold/50" />
-          <p className="font-body text-xs uppercase tracking-[0.35em] text-ivory-dim">
-            Tap to open
+          <p className={`text-ivory-dim transition-all duration-300 ${
+            lang === 'en'
+              ? 'font-body text-xs uppercase tracking-[0.35em]'
+              : 'font-deva text-sm'
+          }`}>
+            {t.tap}
           </p>
           <span className="h-px w-8 bg-gradient-to-l from-transparent to-gold/50" />
         </motion.div>

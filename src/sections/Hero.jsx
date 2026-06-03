@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import { couple } from '../data/content';
+import { useContent } from '../lib/LanguageContext';
 import { EASE } from '../lib/motion';
 import GoldText from '../components/GoldText';
 import MandalaDraw from '../components/MandalaDraw';
@@ -27,6 +27,7 @@ function CurtainName({ children, delay, reduce }) {
 export default function Hero() {
   const ref = useRef(null);
   const reduce = useReducedMotion();
+  const { couple, ui, lang } = useContent();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
@@ -92,9 +93,13 @@ export default function Hero() {
 
         <motion.p
           {...enter(0.25)}
-          className="mt-6 font-body text-xs uppercase tracking-[0.45em] text-ivory-dim"
+          className={`mt-6 text-ivory-dim ${
+            lang === 'hi'
+              ? 'font-deva text-base'
+              : 'font-body text-xs uppercase tracking-[0.45em]'
+          }`}
         >
-          We're getting married
+          {ui.hero.tagline}
         </motion.p>
 
         <h1 className="mt-4 leading-none">

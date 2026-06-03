@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { Flower2, Music4, Flame, Wine, Clock, MapPin, Shirt } from 'lucide-react';
+import { useContent } from '../lib/LanguageContext';
 import { EASE, viewport } from '../lib/motion';
 
 const ICONS = { flower: Flower2, music: Music4, flame: Flame, glass: Wine };
@@ -32,6 +33,7 @@ const item = (delay) => ({
 export default function EventCard({ event }) {
   const reduce = useReducedMotion();
   const ref = useRef(null);
+  const { lang } = useContent();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
@@ -91,13 +93,13 @@ export default function EventCard({ event }) {
           </motion.span>
 
           <motion.h3
-            className="mt-6 font-display text-4xl text-ivory sm:text-5xl"
+            className={`mt-6 text-4xl text-ivory sm:text-5xl ${lang === 'hi' ? 'font-deva' : 'font-display'}`}
             variants={item(0.2)}
           >
             {event.name}
           </motion.h3>
           <motion.p
-            className="mt-3 font-script text-3xl text-gold"
+            className={`mt-3 text-3xl text-gold ${lang === 'hi' ? 'font-deva' : 'font-script'}`}
             variants={item(0.3)}
           >
             {event.date}
@@ -106,7 +108,7 @@ export default function EventCard({ event }) {
           <motion.div className="rule-gold mx-auto my-6 w-16" variants={item(0.38)} />
 
           <motion.ul
-            className="space-y-3 text-left font-body text-sm text-ivory-dim"
+            className={`space-y-3 text-left text-sm text-ivory-dim ${lang === 'hi' ? 'font-deva text-base leading-relaxed' : 'font-body'}`}
             variants={item(0.46)}
           >
             <li className="flex items-center gap-3">
@@ -124,7 +126,7 @@ export default function EventCard({ event }) {
           </motion.ul>
 
           <motion.p
-            className="mt-6 font-display text-lg italic text-ivory"
+            className={`mt-6 text-lg text-ivory ${lang === 'hi' ? 'font-deva' : 'font-display italic'}`}
             variants={item(0.56)}
           >
             “{event.note}”

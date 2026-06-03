@@ -1,11 +1,44 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { couple, navItems } from '../data/content';
+import { useContent } from '../lib/LanguageContext';
+
+function LangToggle({ lang, setLang, className = '' }) {
+  return (
+    <div className={`flex items-center gap-1 ${className}`}>
+      <button
+        type="button"
+        onClick={() => setLang('en')}
+        className={`px-2 py-0.5 rounded-sm border text-xs font-body uppercase tracking-[0.18em] transition-all duration-300 ${
+          lang === 'en'
+            ? 'border-gold/55 text-gold bg-gold/10'
+            : 'border-gold/20 text-ivory-dim hover:border-gold/40 hover:text-ivory'
+        }`}
+        aria-pressed={lang === 'en'}
+      >
+        EN
+      </button>
+      <span className="text-gold/30 text-[10px] select-none" aria-hidden="true">|</span>
+      <button
+        type="button"
+        onClick={() => setLang('hi')}
+        className={`px-2 py-0.5 rounded-sm border font-deva text-sm leading-none transition-all duration-300 ${
+          lang === 'hi'
+            ? 'border-gold/55 text-gold bg-gold/10'
+            : 'border-gold/20 text-ivory-dim hover:border-gold/40 hover:text-ivory'
+        }`}
+        aria-pressed={lang === 'hi'}
+      >
+        हिं
+      </button>
+    </div>
+  );
+}
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { couple, navItems, ui, lang, setLang } = useContent();
 
   useEffect(() => {
     let ticking = false;
@@ -40,28 +73,40 @@ export default function Nav() {
           {monogram}
         </a>
 
-        <ul className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => (
-            <li key={item.id}>
-              <a
-                href={`#${item.id}`}
-                className="group relative font-body text-sm uppercase tracking-[0.18em] text-ivory-dim transition-colors hover:text-ivory"
-              >
-                {item.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
-              </a>
-            </li>
-          ))}
-        </ul>
+        {/* Desktop nav + toggle */}
+        <div className="hidden items-center gap-6 md:flex">
+          <ul className="flex items-center gap-8">
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  className={`group relative transition-colors hover:text-ivory ${
+                    lang === 'hi'
+                      ? 'font-deva text-base text-ivory-dim'
+                      : 'font-body text-sm uppercase tracking-[0.18em] text-ivory-dim'
+                  }`}
+                >
+                  {item.label}
+                  <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
+                </a>
+              </li>
+            ))}
+          </ul>
+          <LangToggle lang={lang} setLang={setLang} />
+        </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="text-ivory md:hidden"
-          aria-label="Open menu"
-        >
-          <Menu size={26} strokeWidth={1.5} />
-        </button>
+        {/* Mobile: toggle + hamburger */}
+        <div className="flex items-center gap-3 md:hidden">
+          <LangToggle lang={lang} setLang={setLang} />
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="text-ivory"
+            aria-label={ui.nav.openMenu}
+          >
+            <Menu size={26} strokeWidth={1.5} />
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -77,7 +122,7 @@ export default function Nav() {
               type="button"
               onClick={() => setOpen(false)}
               className="absolute right-5 top-5 text-ivory"
-              aria-label="Close menu"
+              aria-label={ui.nav.closeMenu}
             >
               <X size={28} strokeWidth={1.5} />
             </button>
@@ -86,7 +131,7 @@ export default function Nav() {
                 key={item.id}
                 href={`#${item.id}`}
                 onClick={() => setOpen(false)}
-                className="font-display text-3xl text-ivory"
+                className={`text-ivory ${lang === 'hi' ? 'font-deva text-4xl' : 'font-display text-3xl'}`}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.06 * i + 0.1 }}

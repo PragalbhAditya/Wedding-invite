@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { useLenis } from './lib/useLenis';
+import { LanguageProvider } from './lib/LanguageContext';
 import EnvelopeIntro from './components/EnvelopeIntro';
 import Nav from './components/Nav';
 import SectionIndicator from './components/SectionIndicator';
@@ -17,7 +18,7 @@ export default function App() {
   useLenis();
 
   return (
-    <>
+    <LanguageProvider>
       <ScrollProgress />
       <Nav />
       <SectionIndicator />
@@ -33,6 +34,6 @@ export default function App() {
       <AnimatePresence>
         {!introDone && <EnvelopeIntro key="intro" onOpen={() => setIntroDone(true)} />}
       </AnimatePresence>
-    </>
+    </LanguageProvider>
   );
 }
