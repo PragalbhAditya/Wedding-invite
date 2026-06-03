@@ -117,12 +117,19 @@ export const content = {
       ],
     },
 
+    contacts: [
+      { name: 'Rahul Sharma', role: "Groom's Side", phone: '+91 98765 43210', email: 'rahul@example.com' },
+      { name: 'Priya Singh', role: "Bride's Side", phone: '+91 91234 56789', email: 'priya@example.com' },
+      { name: 'Event Coordinator', role: 'Venue & Logistics', phone: '+91 99999 00000', email: 'events@example.com' },
+    ],
+
     ui: {
       hero: { tagline: "We're getting married" },
       story: { eyebrow: 'How it began', heading: 'Our Story' },
       events: { eyebrow: 'Four days of celebration', heading: 'The Events' },
       gallery: { eyebrow: 'Moments', heading: 'Gallery' },
       venue: { eyebrow: 'Getting there', heading: 'Venue & Travel', directions: 'Get directions', whereToStay: 'Where to Stay', weddingVenue: 'Wedding Ceremony', receptionVenue: 'Reception' },
+      contact: { eyebrow: 'Need help?', heading: 'Contact Us' },
       footer: { backToTop: 'Back to top', closing: 'With love & blessings' },
       envelope: { invited: "You're invited", tap: 'Tap to open', dialogLabel: 'Open your wedding invitation', btnLabel: 'Tap to open the invitation' },
       nav: { openMenu: 'Open menu', closeMenu: 'Close menu' },
@@ -148,6 +155,7 @@ export const content = {
       { id: 'events', label: 'कार्यक्रम' },
       { id: 'gallery', label: 'गैलरी' },
       { id: 'travel', label: 'यात्रा' },
+      { id: 'contact', label: 'संपर्क' },
     ],
 
     story: [
@@ -241,12 +249,19 @@ export const content = {
       ],
     },
 
+    contacts: [
+      { name: 'Rahul Sharma', role: 'वर पक्ष', phone: '+91 98765 43210', email: 'rahul@example.com' },
+      { name: 'Priya Singh', role: 'वधू पक्ष', phone: '+91 91234 56789', email: 'priya@example.com' },
+      { name: 'Event Coordinator', role: 'स्थल और व्यवस्था', phone: '+91 99999 00000', email: 'events@example.com' },
+    ],
+
     ui: {
       hero: { tagline: 'हम विवाह बंधन में बंध रहे हैं' },
       story: { eyebrow: 'शुरुआत कैसे हुई', heading: 'हमारी कहानी' },
       events: { eyebrow: 'चार दिन का उत्सव', heading: 'कार्यक्रम' },
       gallery: { eyebrow: 'यादें', heading: 'गैलरी' },
       venue: { eyebrow: 'कैसे पहुँचें', heading: 'स्थल और यात्रा', directions: 'दिशा-निर्देश पाएँ', whereToStay: 'कहाँ ठहरें', weddingVenue: 'विवाह समारोह', receptionVenue: 'रिसेप्शन' },
+      contact: { eyebrow: 'सहायता चाहिए?', heading: 'संपर्क करें' },
       footer: { backToTop: 'वापस ऊपर', closing: 'प्रेम और आशीर्वाद सहित' },
       envelope: { invited: 'आप आमंत्रित हैं', tap: 'खोलने के लिए टैप करें', dialogLabel: 'अपना विवाह निमंत्रण खोलें', btnLabel: 'निमंत्रण खोलने के लिए टैप करें' },
       nav: { openMenu: 'मेनू खोलें', closeMenu: 'मेनू बंद करें' },

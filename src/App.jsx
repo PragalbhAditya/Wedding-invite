@@ -12,6 +12,7 @@ import Story from './sections/Story';
 import Events from './sections/Events';
 import Gallery from './sections/Gallery';
 import Venue from './sections/Venue';
+import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 
 export default function App() {
@@ -70,6 +71,7 @@ export default function App() {
         <Events />
         <Gallery />
         <Venue />
+        <Contact />
       </main>
       <Footer />
 
