@@ -12,7 +12,7 @@ export const content = {
       invocation: '॥ शुभ विवाह ॥',
       date: 'Saturday, 12 December 2026',
       city: 'Udaipur, Rajasthan',
-      hashtag: '#AdityaWedsBabita',
+      hashtag: '#AdityaWedsBarbie',
       intro:
         'Together with their families, request the honour of your presence as two hearts, two families, and two worlds become one.',
     },
@@ -131,7 +131,7 @@ export const content = {
       invocation: '॥ शुभ विवाह ॥',
       date: 'शनिवार, 12 दिसंबर 2026',
       city: 'उदयपुर, राजस्थान',
-      hashtag: '#AdityaWedsBabita',
+      hashtag: '#AdityaWedsBarbie',
       intro:
         'अपने-अपने परिवारों के साथ, वे आपसे निवेदन करते हैं कि इस पावन अवसर पर उपस्थित हों, जब दो हृदय, दो परिवार और दो दुनियाएँ एक हो जाती हैं।',
     },
