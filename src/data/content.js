@@ -19,7 +19,6 @@ export const content = {
 
     navItems: [
       { id: 'home', label: 'Home' },
-      { id: 'story', label: 'Our Story' },
       { id: 'events', label: 'Events' },
       { id: 'gallery', label: 'Gallery' },
       { id: 'travel', label: 'Travel' },
@@ -97,9 +96,9 @@ export const content = {
     ],
 
     venue: {
-      name: 'The Wedding Venue',
+      name: 'Vrindavan Hotel',
       address: 'Godda, Jharkhand 814133, India',
-      mapQuery: 'Godda Jharkhand',
+      mapQuery: 'Vrindavan Hotel Godda Jharkhand',
       reception: {
         name: 'Hotel Panache Kautilya',
         address: 'Patna, Bihar, India',
@@ -151,7 +150,6 @@ export const content = {
 
     navItems: [
       { id: 'home', label: 'मुख्य पृष्ठ' },
-      { id: 'story', label: 'हमारी कहानी' },
       { id: 'events', label: 'कार्यक्रम' },
       { id: 'gallery', label: 'गैलरी' },
       { id: 'travel', label: 'यात्रा' },
@@ -229,9 +227,9 @@ export const content = {
     ],
 
     venue: {
-      name: 'विवाह स्थल',
+      name: 'वृंदावन होटल',
       address: 'गोड्डा, झारखंड 814133, भारत',
-      mapQuery: 'Godda Jharkhand',
+      mapQuery: 'Vrindavan Hotel Godda Jharkhand',
       reception: {
         name: 'होटल पनाचे कौटिल्य',
         address: 'पटना, बिहार, भारत',
@@ -269,11 +267,23 @@ export const content = {
   },
 };
 
+import photo01 from '../assets/gallery/photo-01.jpg';
+import photo02 from '../assets/gallery/photo-02.jpg';
+import photo03 from '../assets/gallery/photo-03.jpg';
+import photo04 from '../assets/gallery/photo-04.jpg';
+import photo05 from '../assets/gallery/photo-05.jpg';
+import photo06 from '../assets/gallery/photo-06.jpg';
+import photo07 from '../assets/gallery/photo-07.jpg';
+import photo08 from '../assets/gallery/photo-08.jpg';
+import photo09 from '../assets/gallery/photo-09.jpg';
+
 // Gallery has no translatable text — shared across languages.
-export const gallery = Array.from({ length: 9 }).map((_, i) => ({
+const galleryPhotos = [photo01, photo02, photo03, photo04, photo05, photo06, photo07, photo08, photo09];
+
+export const gallery = galleryPhotos.map((src, i) => ({
   id: i + 1,
   label: `Photo ${i + 1}`,
-  src: null,
+  src,
   tone: ['emerald', 'burgundy', 'navy', 'gold'][i % 4],
   tall: [0, 3, 4, 7].includes(i),
 }));

@@ -8,7 +8,6 @@ import Nav from './components/Nav';
 import SectionIndicator from './components/SectionIndicator';
 import ScrollProgress from './components/ScrollProgress';
 import Hero from './sections/Hero';
-import Story from './sections/Story';
 import Events from './sections/Events';
 import Gallery from './sections/Gallery';
 import Venue from './sections/Venue';
@@ -67,7 +66,6 @@ export default function App() {
       <SectionIndicator />
       <main>
         <Hero />
-        <Story />
         <Events />
         <Gallery />
         <Venue />

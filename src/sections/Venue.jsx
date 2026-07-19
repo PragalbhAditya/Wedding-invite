@@ -4,7 +4,7 @@ import { useContent } from '../lib/LanguageContext';
 import { EASE } from '../lib/motion';
 import Reveal from '../components/Reveal';
 
-function VenueCard({ label, name, address, mapQuery, directionsLabel, lang, delay = 0 }) {
+function VenueCard({ label, name, address, mapQuery, directionsLabel, lang, delay = 0, realMap = false }) {
   const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
   return (
     <Reveal delay={delay}>
@@ -14,7 +14,19 @@ function VenueCard({ label, name, address, mapQuery, directionsLabel, lang, dela
       </p>
 
       <div className="grid items-center gap-10 md:grid-cols-2">
-        {/* Stylised map */}
+        {realMap ? (
+          <div className="relative overflow-hidden rounded-sm border border-gold/20">
+            <iframe
+              title={name}
+              src={`https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`}
+              className="aspect-[4/3] w-full grayscale-[0.2]"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        ) : (
+        /* Stylised map */
         <div className="relative overflow-hidden rounded-sm border border-gold/20">
           <div
             className="relative aspect-[4/3] w-full"
@@ -60,6 +72,7 @@ function VenueCard({ label, name, address, mapQuery, directionsLabel, lang, dela
             ))}
           </div>
         </div>
+        )}
 
         {/* Info */}
         <div>
@@ -109,6 +122,7 @@ export default function Venue() {
             directionsLabel={ui.venue.directions}
             lang={lang}
             delay={0}
+            realMap
           />
         </div>
 
@@ -128,6 +142,7 @@ export default function Venue() {
           directionsLabel={ui.venue.directions}
           lang={lang}
           delay={0.05}
+          realMap
         />
 
         {/* Travel tips */}
