@@ -228,14 +228,19 @@ import photo06 from '../assets/gallery/photo-06.jpg';
 import photo07 from '../assets/gallery/photo-07.jpg';
 import photo08 from '../assets/gallery/photo-08.jpg';
 import photo09 from '../assets/gallery/photo-09.jpg';
+import photo10 from '../assets/gallery/photo-10.jpg';
 
 // Gallery has no translatable text — shared across languages.
 const galleryPhotos = [photo01, photo02, photo03, photo04, photo05, photo06, photo07, photo08, photo09];
 
-export const gallery = galleryPhotos.map((src, i) => ({
-  id: i + 1,
-  label: `Photo ${i + 1}`,
-  src,
-  tone: ['emerald', 'burgundy', 'navy', 'gold'][i % 4],
-  tall: [0, 3, 4, 7].includes(i),
-}));
+export const gallery = [
+  ...galleryPhotos.map((src, i) => ({
+    id: i + 1,
+    label: `Photo ${i + 1}`,
+    src,
+    tone: ['emerald', 'burgundy', 'navy', 'gold'][i % 4],
+    tall: [0, 3, 4, 7].includes(i),
+  })),
+  // Shown only on mobile, in place of the full grid above.
+  { id: 10, label: 'Photo 10', src: photo10, tone: 'gold', tall: false, mobileOnly: true },
+];

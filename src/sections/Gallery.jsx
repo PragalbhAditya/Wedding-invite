@@ -34,7 +34,7 @@ export default function Gallery() {
           <div className="rule-gold mx-auto mt-6 w-24" />
         </Reveal>
 
-        <div className="mt-14 columns-2 gap-4 md:columns-3 [&>*]:mb-4">
+        <div className="mt-14 columns-1 gap-4 md:columns-3 [&>*]:mb-4">
           {gallery.map((item, i) => (
             <motion.button
               key={item.id}
@@ -47,9 +47,9 @@ export default function Gallery() {
               transition={{ duration: 0.6, ease: EASE, delay: (i % 3) * 0.08 }}
               whileHover={{ scale: 1.015 }}
               whileTap={{ scale: 0.985 }}
-              className={`group relative block w-full overflow-hidden rounded-sm border border-gold/15 ${
-                item.tall ? 'aspect-[3/4]' : 'aspect-square'
-              }`}
+              className={`group relative w-full overflow-hidden rounded-sm border border-gold/15 ${
+                item.mobileOnly ? 'block md:hidden' : 'hidden md:block'
+              } ${item.tall ? 'aspect-[3/4]' : 'aspect-square'}`}
               style={{ background: TILE_BG[item.tone] }}
               aria-label={`Open ${item.label}`}
             >
