@@ -25,29 +25,6 @@ export const content = {
       { id: 'contact', label: 'Contact' },
     ],
 
-    story: [
-      {
-        year: '2018',
-        title: 'A Chance Meeting',
-        text: 'A spilled cup of chai at a crowded Mumbai cafe, two strangers, and a conversation that refused to end.',
-      },
-      {
-        year: '2020',
-        title: 'Long Letters',
-        text: 'Cities apart, they fell in love the old-fashioned way — in long phone calls that lasted until sunrise.',
-      },
-      {
-        year: '2023',
-        title: 'The Proposal',
-        text: 'On a quiet rooftop under a sky full of lanterns, one question changed everything.',
-      },
-      {
-        year: '2026',
-        title: 'Forever Begins',
-        text: 'And now, surrounded by the people they love most, the story becomes a celebration.',
-      },
-    ],
-
     events: [
       {
         key: 'haldi',
@@ -124,7 +101,6 @@ export const content = {
 
     ui: {
       hero: { tagline: "We're getting married" },
-      story: { eyebrow: 'How it began', heading: 'Our Story' },
       events: { eyebrow: 'Four days of celebration', heading: 'The Events' },
       gallery: { eyebrow: 'Moments', heading: 'Gallery' },
       venue: { eyebrow: 'Getting there', heading: 'Venue & Travel', directions: 'Get directions', whereToStay: 'Where to Stay', weddingVenue: 'Wedding Ceremony', receptionVenue: 'Reception' },
@@ -154,29 +130,6 @@ export const content = {
       { id: 'gallery', label: 'गैलरी' },
       { id: 'travel', label: 'यात्रा' },
       { id: 'contact', label: 'संपर्क' },
-    ],
-
-    story: [
-      {
-        year: '2018',
-        title: 'एक अनोखी मुलाकात',
-        text: 'मुंबई के एक भीड़भाड़ वाले कैफे में गिरी चाय की चुस्की, दो अजनबी और एक बातचीत जो रुकने का नाम न ले।',
-      },
-      {
-        year: '2020',
-        title: 'लंबी बातें',
-        text: 'शहरों की दूरियाँ थीं, पर प्यार पुराने अंदाज़ में परवान चढ़ा — उन लंबी फ़ोन कॉल्स में जो सूर्योदय तक चलती थीं।',
-      },
-      {
-        year: '2023',
-        title: 'प्रस्ताव',
-        text: 'लालटेनों से भरे आकाश तले एक शांत छत पर, एक सवाल ने सब कुछ बदल दिया।',
-      },
-      {
-        year: '2026',
-        title: 'हमेशा के लिए',
-        text: 'और अब, अपने प्रियजनों के बीच, यह कहानी एक उत्सव बन जाती है।',
-      },
     ],
 
     events: [
@@ -255,7 +208,6 @@ export const content = {
 
     ui: {
       hero: { tagline: 'हम विवाह बंधन में बंध रहे हैं' },
-      story: { eyebrow: 'शुरुआत कैसे हुई', heading: 'हमारी कहानी' },
       events: { eyebrow: 'चार दिन का उत्सव', heading: 'कार्यक्रम' },
       gallery: { eyebrow: 'यादें', heading: 'गैलरी' },
       venue: { eyebrow: 'कैसे पहुँचें', heading: 'स्थल और यात्रा', directions: 'दिशा-निर्देश पाएँ', whereToStay: 'कहाँ ठहरें', weddingVenue: 'विवाह समारोह', receptionVenue: 'रिसेप्शन' },

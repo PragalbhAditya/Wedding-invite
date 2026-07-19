@@ -36,15 +36,17 @@ export default function App() {
     };
 
     // Try immediate autoplay; fall back to first user interaction
+    const onInteract = () => {
+      audio.play().then(fadeIn).catch(() => {});
+    };
     audio.play().then(fadeIn).catch(() => {
-      const onInteract = () => {
-        audio.play().then(fadeIn).catch(() => {});
-      };
       document.addEventListener('click', onInteract, { once: true });
       document.addEventListener('touchstart', onInteract, { once: true });
     });
 
     return () => {
+      document.removeEventListener('click', onInteract);
+      document.removeEventListener('touchstart', onInteract);
       audio.pause();
       audio.src = '';
     };
